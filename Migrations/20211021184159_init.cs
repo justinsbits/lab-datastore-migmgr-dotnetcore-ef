@@ -52,14 +52,20 @@ namespace CommanderDBMigrationMgr.Migrations
                 values: new object[] { 2, "", "docker" });
 
             migrationBuilder.InsertData(
-                table: "Commands",
-                columns: new[] { "Id", "CommandLine", "HowTo", "ToolId" },
-                values: new object[] { 1, "dotnet user-secrets init", "Enable secret storage for project", 1 });
+                table: "Tools",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[] { 3, "", "git" });
 
             migrationBuilder.InsertData(
                 table: "Commands",
                 columns: new[] { "Id", "CommandLine", "HowTo", "ToolId" },
-                values: new object[] { 2, "dotnet user-secrets set \"<key>\" \"<value>\"", "Set secret for project", 1 });
+                values: new object[,]
+                {
+                    { 1, "dotnet user-secrets init", "Enable secret storage for project", 1 },
+                    { 2, "dotnet user-secrets set \"<key>\" \"<value>\"", "Set secret for project", 1 },
+                    { 3, "dotnet new gitignore", "Generate default dotnet gitignore file for project", 1 },
+                    { 4, "git init", "Create an empty Git repository or reinitialize an existing one", 3 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Commands_ToolId",

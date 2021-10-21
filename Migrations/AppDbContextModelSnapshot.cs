@@ -56,6 +56,20 @@ namespace CommanderDBMigrationMgr.Migrations
                             CommandLine = "dotnet user-secrets set \"<key>\" \"<value>\"",
                             HowTo = "Set secret for project",
                             ToolId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CommandLine = "dotnet new gitignore",
+                            HowTo = "Generate default dotnet gitignore file for project",
+                            ToolId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CommandLine = "git init",
+                            HowTo = "Create an empty Git repository or reinitialize an existing one",
+                            ToolId = 3
                         });
                 });
 
@@ -92,6 +106,12 @@ namespace CommanderDBMigrationMgr.Migrations
                             Id = 2,
                             Description = "",
                             Name = "docker"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "",
+                            Name = "git"
                         });
                 });
 
