@@ -1,14 +1,9 @@
-﻿using CommanderDA;
+﻿using CommanderData;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Configuration;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace CommanderDBMigrationMgr
 {
@@ -34,18 +29,14 @@ namespace CommanderDBMigrationMgr
             return Host.CreateDefaultBuilder()
                 .ConfigureAppConfiguration((hostContext, builder) =>
                 {
-                    if (hostContext.HostingEnvironment.IsDevelopment())
-                    {
-                        builder.AddUserSecrets<Program>();
-                    }
+                    //if (hostContext.HostingEnvironment.IsDevelopment())
+                    //{
+                    //    builder.AddUserSecrets<Program>();
+                    //}
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    var sqlConStrBuilder = new SqlConnectionStringBuilder(
-                    hostContext.Configuration.GetConnectionString("CommandConStr"));
-                    sqlConStrBuilder.Password = hostContext.Configuration["DbPassword"];
-                    string sqlConStr = sqlConStrBuilder.ConnectionString;
-
+                    var sqlConStr = hostContext.Configuration.GetConnectionString("CommandConStr");
                     services
                         .AddDbContext<AppDbContext>(opt => opt.UseSqlServer(sqlConStr, b => b.MigrationsAssembly("CommanderDBMigrationMgr")));
                 });
